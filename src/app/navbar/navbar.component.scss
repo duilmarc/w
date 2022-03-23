@@ -1,0 +1,11 @@
+.dropdown-menu.right{
+  left: inherit;
+  right: 0;
+}
+
+@media screen and (max-width: 991px){
+  .dropdown-menu.right{
+    left: 0;
+    right: inherit;
+  }
+}
