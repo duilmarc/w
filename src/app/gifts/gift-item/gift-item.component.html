@@ -1,1 +1,16 @@
-<p>gift-item works!</p>
+<div class="d-flex">
+  <div class="w-50">
+    <img class="img-responsive" src="{{gift.image}}" alt="{{gift.name}}">
+  </div>
+  <div class="w-50">
+    {{gift.name}}
+    <hr>
+    {{gift.description}}
+    <hr>
+    <a href="{{gift.url}}">Link</a>
+    <div class="mt-3">
+      <button class="btn btn-primary" [routerLink]="[gift.uuid,'edit']">Editar</button>
+      <!-- <button class="btn btn-danger" (click)="deleteGift()">Eliminar</button> -->
+    </div>
+  </div>
+</div>

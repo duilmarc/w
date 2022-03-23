@@ -54,14 +54,40 @@ const giftsController = {
   },
   getOne: async (req, res) => {
     const { uuid } = req.params;
-    const gift = await prisma.gift.findUnique({
-      where: {
-        uuid,
-      },
-      rejectOnNotFound: false,
-    });
-    return res.status(200).json(gift);
-  }
+    try {
+      const gift = await prisma.gift.findUnique({
+        where: {
+          uuid,
+        },
+        rejectOnNotFound: false,
+      });
+      return res.status(200).json(gift);
+    } catch (e) {
+      console.log(e);
+      return res.status(404).json({ message: "Gift not found" });
+    }
+  },
+  editGift: async (req, res) => {
+    const { name, description, url, image } = req.body;
+    const { uuid } = req.params;
+    try {
+      const gift = await prisma.gift.update({
+        where: {
+          uuid,
+        },
+        data: {
+          name,
+          description,
+          url,
+          image,
+        },
+      });
+      return res.status(200).json(gift);
+    } catch (e) {
+      console.log(e);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  },
 };
 
 module.exports = giftsController;

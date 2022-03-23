@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'http://localhost:3000',
+  googleClientId: '334315013698-i1cvlgnpjstudcp3ie86v40cm9dpuokq.apps.googleusercontent.com',
+  facebookClientId: '2146991385452349'
 };

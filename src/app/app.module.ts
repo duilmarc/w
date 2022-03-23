@@ -12,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddGiftComponent } from './gifts/add-gift/add-gift.component';
 import { GiftListComponent } from './gifts/gift-list/gift-list.component';
 import { GiftItemComponent } from './gifts/gift-item/gift-item.component';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { environment } from 'src/environments/environment';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -29,8 +32,25 @@ import { GiftItemComponent } from './gifts/gift-item/gift-item.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    SocialLoginModule,
+    FontAwesomeModule
   ],
-  providers: [],
+  providers: [{
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider(environment.googleClientId)
+        },
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider(environment.facebookClientId),
+        },
+      ],
+    } as SocialAuthServiceConfig,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,28 +1,33 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { User } from '../user.model';
-import { UserService } from '../user.service';
+import { HttpErrorResponse } from "@angular/common/http";
+import { Component, OnInit } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
+import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from "angularx-social-login";
+import { User } from "../user.model";
+import { UserService } from "../user.service";
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
+  selector: "app-signup",
+  templateUrl: "./signup.component.html",
+  styleUrls: ["./signup.component.scss"],
 })
 export class SignupComponent implements OnInit {
   user?: User;
-  confirmPassword: string = '';
+  confirmPassword: string = "";
   passwordMatch = true;
-  errorMessage = '';
+  errorMessage = "";
+  faFacebook = faFacebookF;
+  faGoogle = faGoogle;
   constructor(
     private readonly userService: UserService,
-    private readonly router: Router
+    private readonly router: Router,
+    private socialAuthService: SocialAuthService
   ) {}
 
   ngOnInit(): void {
     if (this.userService.isLoggedIn()) {
-      this.router.navigate(['/gifts']);
+      this.router.navigate(["/gifts"]);
     }
   }
 
@@ -41,12 +46,43 @@ export class SignupComponent implements OnInit {
     this.passwordMatch = true;
     try {
       await this.userService.signUp(user);
-      this.router.navigate(['/gifts']);
+      this.router.navigate(["/gifts"]);
     } catch (e) {
       if (e instanceof HttpErrorResponse) {
         this.errorMessage = e.error.message;
       }
       return;
+    }
+  }
+  async loginWithGoogle(): Promise<void> {
+    const socialUser = await this.socialAuthService.signIn(
+      GoogleLoginProvider.PROVIDER_ID
+    );
+    const user: User = {
+      email: socialUser.email,
+      name: socialUser.name,
+    };
+    if (user) {
+      const result = await this.userService.socialLogin(user);
+      if (result) {
+        this.router.navigate(["/gifts"]);
+      }
+    }
+  }
+
+  async loginWithFacebook(): Promise<void> {
+    const socialUser = await this.socialAuthService.signIn(
+      FacebookLoginProvider.PROVIDER_ID
+    );
+    const user: User = {
+      email: socialUser.email,
+      name: socialUser.name,
+    };
+    if (user) {
+      const result = await this.userService.socialLogin(user);
+      if (result) {
+        this.router.navigate(["/gifts"]);
+      }
     }
   }
 }

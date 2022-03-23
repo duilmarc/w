@@ -1,1 +1,36 @@
-<p>login works!</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12 col-md-8 m-auto">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo electronico</label>
+          <input type="email" [ngModel]="user?.email" #email="ngModel" name="email" class="form-control" id="email">
+          <div *ngIf="!email.valid && email.touched" class="alert alert-danger">
+            Ingresa un email valido
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="password" [ngModel]="user?.password" name="password"
+            #password="ngModel" required minlength="8">
+          <div *ngIf="!password.valid && password.touched" class="alert alert-danger">
+            Ingresa una contraseña valida, por lo menos de 8 caracteres
+          </div>
+        </div>
+        <div class="alert alert-danger" *ngIf="errorMessage">
+          {{errorMessage}}
+        </div>
+        <div class="mb-3">
+          <span>Aun no estas registrado? intenta <a [routerLink]="['/signup']">registrarte</a></span>
+        </div>
+        <button type="submit" class="btn btn-primary mx-2">Iniciar Sesion</button>
+        <button type="button" (click)="loginWithGoogle()" class="google-login-btn mx-2 btn btn-outline-secondary">
+          <fa-icon [icon]="faGoogle"></fa-icon> Sign in with Google
+        </button>
+        <button type="button" (click)="loginWithFacebook()" class="facebook-login-btn mx-2 btn btn-outline-primary">
+          <fa-icon [icon]="faFacebook"></fa-icon> Sign in with Facebook
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -45,7 +45,8 @@ const usersController = {
   // login
   login: async (req, res) => {
     const { email, password } = req.body;
-    const user = await this.existingUser(email);
+    console.log(req.body);
+    const user = await usersService.existingUser(email);
     if (!user) {
       return res.status(401).json({ message: "Invalid password or email" });
     }
@@ -62,6 +63,29 @@ const usersController = {
     );
     return res.status(200).json({ token });
   },
+  socialLogin: async (req, res) => {
+    const { email, name } = req.body;
+    const adminEmails = process.env.ADMIN_EMAILS.split(" ");
+    const role = adminEmails.includes(email) ? Role.ADMIN : Role.USER;
+    let user = await usersService.existingUser(email);
+    if (!user) {
+      user = await prisma.user.create({
+        data: {
+          email,
+          name,
+          role: role,
+        },
+      });
+    }
+    const token = jwt.sign(
+      { uuid: user.uuid },
+      process.env.JWT_SECRET || "secret",
+      {
+        expiresIn: "1h",
+      }
+    );
+    return res.status(200).json({ token });
+  }
 };
 
 module.exports = usersController;

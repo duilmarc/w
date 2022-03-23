@@ -1,1 +1,6 @@
-<p>Lista de Regalos</p>
+<div class="list-group">
+  <h4 *ngIf="gifts.length===0">No Todos</h4>
+  <div class="list-group-item mb-2" *ngFor="let gift of gifts">
+    <gift-item [gift]="gift"></gift-item>
+  </div>
+</div>

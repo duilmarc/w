@@ -1,7 +1,7 @@
 export class User {
   name: string;
   email: string;
-  password: string;
+  password?: string;
 
   constructor(name: string, email: string, password: string) {
     this.name = name;
