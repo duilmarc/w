@@ -34,7 +34,7 @@ const usersController = {
     });
 
     const token = jwt.sign(
-      { uuid: user.uuid },
+      { uuid: user.uuid, role: user.role },
       process.env.JWT_SECRET || "secret",
       {
         expiresIn: "1h",
@@ -45,7 +45,6 @@ const usersController = {
   // login
   login: async (req, res) => {
     const { email, password } = req.body;
-    console.log(req.body);
     const user = await usersService.existingUser(email);
     if (!user) {
       return res.status(401).json({ message: "Invalid password or email" });
@@ -55,7 +54,7 @@ const usersController = {
       return res.status(401).json({ message: "Invalid password or email" });
     }
     const token = jwt.sign(
-      { uuid: user.uuid },
+      { uuid: user.uuid, role: user.role },
       process.env.JWT_SECRET || "secret",
       {
         expiresIn: "1h",
@@ -78,14 +77,14 @@ const usersController = {
       });
     }
     const token = jwt.sign(
-      { uuid: user.uuid },
+      { uuid: user.uuid, role: user.role },
       process.env.JWT_SECRET || "secret",
       {
         expiresIn: "1h",
       }
     );
     return res.status(200).json({ token });
-  }
+  },
 };
 
 module.exports = usersController;

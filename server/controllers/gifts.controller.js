@@ -88,6 +88,20 @@ const giftsController = {
       return res.status(500).json({ message: "Internal server error" });
     }
   },
+  deleteGift: async (req, res) => {
+    const { uuid } = req.params;
+    try {
+      const gift = await prisma.gift.delete({
+        where: {
+          uuid,
+        },
+      });
+      return res.status(200).json(gift);
+    } catch (e) {
+      console.log(e);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  },
 };
 
 module.exports = giftsController;

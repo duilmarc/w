@@ -12,6 +12,11 @@ router.put(
   giftsController.editGift
 );
 router.get("/:uuid", giftsController.getOne);
+router.delete(
+  "/:uuid",
+  [tokenMiddleware, adminMiddleware],
+  giftsController.deleteGift
+);
 router.post("/", [tokenMiddleware, adminMiddleware], giftsController.addGift);
 
 module.exports = router;

@@ -1,15 +1,17 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AddGiftComponent } from './gifts/add-gift/add-gift.component';
-import { GiftsComponent } from './gifts/gifts.component';
-import { LoginComponent } from './users/login/login.component';
-import { SignupComponent } from './users/signup/signup.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { AddGiftComponent } from "./gifts/add-gift/add-gift.component";
+import { GiftsComponent } from "./gifts/gifts.component";
+import { AdminGuard } from "./guards/admin.guard";
+import { AuthGuard } from "./guards/auth.guard";
+import { LoginComponent } from "./users/login/login.component";
+import { SignupComponent } from "./users/signup/signup.component";
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'gifts',
-    pathMatch: 'full',
+    path: "",
+    redirectTo: "gifts",
+    pathMatch: "full",
   },
   {
     path: "signup",
@@ -22,17 +24,18 @@ const routes: Routes = [
   {
     path: "gifts",
     component: GiftsComponent,
-    children:[
+    canActivateChild: [AuthGuard, AdminGuard],
+    children: [
       {
-        path: ':uuid/edit',
+        path: ":uuid/edit",
         component: AddGiftComponent,
       },
       {
-        path: 'add',
+        path: "add",
         component: AddGiftComponent,
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
 
 @NgModule({
