@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: "gifts",
     component: GiftsComponent,
-    canActivateChild: [AuthGuard, AdminGuard],
+    // canActivateChild: [AuthGuard, AdminGuard],
     children: [
       {
         path: ":uuid/edit",
