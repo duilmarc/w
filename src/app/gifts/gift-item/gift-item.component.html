@@ -1,16 +1,35 @@
-<div class="d-flex">
+<!-- <div class="d-flex">
   <div class="w-50">
-    <img class="img-responsive" src="{{gift.image}}" alt="{{gift.name}}">
+    <img class="gift-img" src="{{gift.image}}" alt="{{gift.name}}">
   </div>
   <div class="w-50">
-    {{gift.name}}
+    <h4>{{gift.name}}</h4>
+    <hr *ngIf="gift.description">
+    {{gift.description??''}}
     <hr>
-    {{gift.description}}
-    <hr>
-    <a href="{{gift.url}}">Link</a>
-    <div class="mt-3">
-      <button class="btn btn-primary" [routerLink]="[gift.uuid,'edit']">Editar</button>
-      <!-- <button class="btn btn-danger" (click)="deleteGift()">Eliminar</button> -->
+    <a *ngIf="gift.url" href="{{gift.url}}">Link</a>
+    <div *ngIf="isAdmin" class="mt-3">
+      <button class="btn btn-primary me-2" [routerLink]="[gift.uuid,'edit']">Editar</button>
+      <button class="btn btn-danger me-2" (click)="deleteGift()">Eliminar</button>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="card">
+  <img src="{{gift.image}}" class="card-img-top gift-img" alt="Card Image">
+  <div class="card-body d-flex flex-column">
+    <h5 class="card-title">{{gift.name}}</h5>
+    <p class="card-text mh-200 mb-4">{{gift.description}}</p>
+    <!-- <a href="#" class="btn btn-primary mt-auto align-self-start">Book now</a> -->
+    <div *ngIf="isAdmin" class="mt-2">
+      <button mat-button class="btn btn-primary me-2" [routerLink]="[gift.uuid,'edit']">Editar</button>
+      <button mat-button class="btn btn-danger me-2" (click)="deleteGift()">Eliminar</button>
+    </div>
+    <div *ngIf="isLoggedIn" class="mt-2">
+      <!-- <button mat-button class="btn btn-primary me-2" [routerLink]="[gift.uuid,'edit']">Editar</button>
+      <button mat-button class="btn btn-danger me-2" (click)="deleteGift()">Eliminar</button> -->
+      <button mat-button class="btn btn-success" (click)="addToMyGifts()">Agregar a mis regalos</button>
     </div>
   </div>
 </div>

@@ -70,9 +70,7 @@ export class GiftsService {
       if (!updatedGift) {
         return null;
       }
-      const index = this.gifts.findIndex(
-        (g) => g.uuid === updatedGift.uuid
-      );
+      const index = this.gifts.findIndex((g) => g.uuid === updatedGift.uuid);
       this.gifts[index] = updatedGift;
       this.giftsChanged.next(this.gifts.slice());
       return updatedGift;
@@ -109,5 +107,51 @@ export class GiftsService {
     }
     this.router.navigate(["/"]);
     return null;
+  }
+  async deleteGift(uuid: string): Promise<boolean> {
+    try {
+      const deleted = await this.http
+        .delete<boolean>(`${environment.apiUrl}/api/gifts/${uuid}`, {
+          headers: this.headers,
+        })
+        .toPromise();
+      if (!deleted) {
+        return false;
+      }
+      const index = this.gifts.findIndex((g) => g.uuid === uuid);
+      this.gifts.splice(index, 1);
+      this.giftsChanged.next(this.gifts.slice());
+      return true;
+    } catch (e) {
+      if (e instanceof HttpErrorResponse && e.status === 401) {
+        localStorage.removeItem("token");
+        this.router.navigate(["/login"]);
+        return false;
+      }
+    }
+    this.router.navigate(["/"]);
+    return false;
+  }
+
+  async addGiftToUser(uuid: string): Promise<boolean> {
+    try {
+      const updatedUser = await this.http
+        .post<boolean>(`${environment.apiUrl}/api/users/${uuid}/gift`, {
+          headers: this.headers,
+        })
+        .toPromise();
+      if (!updatedUser) {
+        return false;
+      }
+      return true;
+    } catch (e) {
+      if (e instanceof HttpErrorResponse && e.status === 401) {
+        localStorage.removeItem("token");
+        this.router.navigate(["/login"]);
+        return false;
+      }
+    }
+    this.router.navigate(["/"]);
+    return false;
   }
 }

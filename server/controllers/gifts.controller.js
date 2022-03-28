@@ -19,7 +19,8 @@ const giftsController = {
     return res.status(200).json(gift);
   },
   addToUser: async (req, res) => {
-    const { userUuid, giftUuid } = req.body;
+    const { giftUuid } = req.body;
+    const userUuid = req.user.uuid;
     const user = await prisma.user.findUnique({
       where: {
         uuid: userUuid,
