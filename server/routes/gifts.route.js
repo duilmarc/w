@@ -5,18 +5,17 @@ const {
   adminMiddleware,
 } = require("../middlewares/token.middleware");
 
-router.get("/", giftsController.getAll);
-router.put(
-  "/:uuid",
-  [tokenMiddleware, adminMiddleware],
-  giftsController.editGift
-);
-router.get("/:uuid", giftsController.getOne);
-router.delete(
-  "/:uuid",
-  [tokenMiddleware, adminMiddleware],
-  giftsController.deleteGift
-);
-router.post("/", [tokenMiddleware, adminMiddleware], giftsController.addGift);
+router
+  .get("/", giftsController.getAll)
+  .post("/", [tokenMiddleware, adminMiddleware], giftsController.addGift)
+  .get("/my", [tokenMiddleware], giftsController.myGifts)
+  .get("/:uuid", giftsController.getOne)
+  .put("/:uuid", [tokenMiddleware, adminMiddleware], giftsController.editGift)
+  .delete(
+    "/:uuid",
+    [tokenMiddleware, adminMiddleware],
+    giftsController.deleteGift
+  )
+  .post("/:uuid/add", tokenMiddleware, giftsController.addToUser);
 
 module.exports = router;

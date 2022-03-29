@@ -22,14 +22,14 @@
     <h5 class="card-title">{{gift.name}}</h5>
     <p class="card-text mh-200 mb-4">{{gift.description}}</p>
     <!-- <a href="#" class="btn btn-primary mt-auto align-self-start">Book now</a> -->
-    <div *ngIf="isAdmin" class="mt-2">
-      <button mat-button class="btn btn-primary me-2" [routerLink]="[gift.uuid,'edit']">Editar</button>
-      <button mat-button class="btn btn-danger me-2" (click)="deleteGift()">Eliminar</button>
+    <div *ngIf="isAdmin && !isMyGifts" class="mt-2">
+      <button mat-raised-button class="btn btn-primary me-2" [routerLink]="[gift.uuid,'edit']">Editar</button>
+      <button mat-raised-button class="btn btn-danger me-2" (click)="deleteGift()">Eliminar</button>
     </div>
-    <div *ngIf="isLoggedIn" class="mt-2">
+    <div *ngIf="isLoggedIn && !isMyGifts" class="mt-2">
       <!-- <button mat-button class="btn btn-primary me-2" [routerLink]="[gift.uuid,'edit']">Editar</button>
       <button mat-button class="btn btn-danger me-2" (click)="deleteGift()">Eliminar</button> -->
-      <button mat-button class="btn btn-success" (click)="addToMyGifts()">Agregar a mis regalos</button>
+      <button mat-raised-button class="btn btn-success" (click)="addToMyGifts()">Agregar a mis regalos</button>
     </div>
   </div>
 </div>

@@ -1,34 +1,43 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar-app">
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['/']" >Navbar</a>
-    <button mat-button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" [routerLink]="['/']">Matrimonio <span class="liz-name">Lizeth</span> & <span
+        class="joel-name">Joel</span></a>
+    <button mat-button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- <li class="nav-item">
+          <a class="nav-link" aria-current="page" [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" >Inicio</a>
+        </li> -->
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="['/']" routerLinkActive="router-link-active" >Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/gifts']" routerLinkActive="router-link-active">Regalos</a>
+          <a class="nav-link" [routerLink]="['/gifts']" [routerLinkActiveOptions]="{exact: true}"
+            routerLinkActive="active">Regalos</a>
         </li>
         <li *ngIf="isLoggedIn" class="nav-item">
-          <a class="nav-link" [routerLink]="['/gifts/me']" routerLinkActive="router-link-active">Mis Regalos</a>
+          <a class="nav-link" [routerLink]="['/gifts/my']" [routerLinkActiveOptions]="{exact: true}"
+            routerLinkActive="active">Mis Regalos</a>
         </li>
         <li *ngIf="isAdmin" class="nav-item">
-          <a class="nav-link" [routerLink]="['/gifts/add']" routerLinkActive="router-link-active">Agregar Regalos</a>
+          <a class="nav-link" [routerLink]="['/gifts/add']" [routerLinkActiveOptions]="{exact: true}"
+            routerLinkActive="active">Agregar Regalos</a>
+        </li>
+        <li *ngIf="isAdmin" class="nav-item">
+          <a class="nav-link" [routerLink]="['/users']" [routerLinkActiveOptions]="{exact: true}"
+            routerLinkActive="active">Lista de Usuarios</a>
         </li>
       </ul>
       <div class="d-flex">
         <div class="dropdown" *ngIf="!isLoggedIn" appDropdown>
-          <a class="dropdown-toggle nav-link text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
+          <a class="dropdown-toggle nav-link text-white clickable" href="#" id="navbarDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
             User
           </a>
           <ul class="dropdown-menu right" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/signup']" routerLinkActive="router-link-active" >Signup</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/login']">Login</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/signup']">Signup</a></li>
             <!-- <li>
               <hr class="dropdown-divider">
             </li>
@@ -36,7 +45,7 @@
           </ul>
         </div>
         <div *ngIf="isLoggedIn">
-          <a class="nav-link  text-white clickable" (click)="logout()">
+          <a class="nav-link text-white clickable" (click)="logout()">
             Logout
           </a>
         </div>

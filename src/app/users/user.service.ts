@@ -2,7 +2,9 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Role } from "@prisma/client";
+import { lastValueFrom } from "rxjs";
 import { environment } from "src/environments/environment";
+import { UserWithGifts } from "./user-with-gifts.model";
 import { User } from "./user.model";
 
 const helper = new JwtHelperService();
@@ -10,6 +12,10 @@ const helper = new JwtHelperService();
   providedIn: "root",
 })
 export class UserService {
+  headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  };
   constructor(private readonly http: HttpClient) {}
 
   async signUp(user: User): Promise<boolean> {
@@ -56,6 +62,21 @@ export class UserService {
 
     const decodedToken = helper.decodeToken(token);
     return decodedToken.role === Role.ADMIN;
+  }
+
+  async getUsers(): Promise<UserWithGifts[]> {
+    if (!this.isAdmin()) {
+      return [];
+    }
+    const users = await this.http.get<UserWithGifts[]>(
+      environment.apiUrl + "/api/users",
+      {
+        headers: this.headers,
+      }
+    );
+    const result = await lastValueFrom(users);
+    console.log(result);
+    return lastValueFrom(users);
   }
 
   isLoggedIn(): boolean {

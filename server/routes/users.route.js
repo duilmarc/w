@@ -3,9 +3,11 @@ const usersController = require("../controllers/users.controller");
 const giftsController = require("../controllers/gifts.controller");
 const { tokenMiddleware } = require("../middlewares/token.middleware");
 
-router.post("/signup", usersController.signup);
-router.post("/login", usersController.login);
-router.post("/social-login", usersController.socialLogin);
-router.post("/:uuid/gift", tokenMiddleware, giftsController.addToUser);
+router
+  .get("/", tokenMiddleware, usersController.getAll)
+  .post("/signup", usersController.signup)
+  .post("/login", usersController.login)
+  .post("/social-login", usersController.socialLogin)
+  .post("/add-gift", tokenMiddleware, giftsController.addToUser);
 
 module.exports = router;

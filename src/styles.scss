@@ -12,3 +12,19 @@
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.liz-name:hover{
+  // color: #96D1E2;
+  color: #96D1E2;
+}
+.joel-name:hover{
+  color:#96D1E2;
+}
+#navbar-app{
+  background-color: #0F4A64 !important;
+}
+.nav-link.text-white.clickable{
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+.nav-link.text-white.clickable:hover{
+  color: rgba(255, 255, 255, 0.75) !important;
+}

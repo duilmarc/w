@@ -20,7 +20,7 @@ export class GiftsService {
     private readonly router: Router
   ) {}
 
-  async getGifts() {
+  async getGifts(): Promise<Gift[]> {
     try {
       const gifts = await this.http
         .get<Gift[]>(`${environment.apiUrl}/api/gifts`, {
@@ -58,6 +58,26 @@ export class GiftsService {
     }
     this.router.navigate(["/"]);
     return null;
+  }
+
+  async getMyGifts(): Promise<Gift[]> {
+    try {
+      const gifts = await this.http
+        .get<Gift[]>(`${environment.apiUrl}/api/gifts/my`, {
+          headers: this.headers,
+        })
+        .toPromise();
+      // this.gifts = gifts?.slice() ?? [];
+      // this.giftsChanged.next(this.gifts.slice());
+      return gifts ?? [];
+    } catch (e) {
+      if (e instanceof HttpErrorResponse && e.status === 401) {
+        localStorage.removeItem("token");
+        this.router.navigate(["/login"]);
+        return [];
+      }
+    }
+    return [];
   }
 
   async updateGift(gift: Gift): Promise<Gift | null> {
@@ -108,6 +128,7 @@ export class GiftsService {
     this.router.navigate(["/"]);
     return null;
   }
+
   async deleteGift(uuid: string): Promise<boolean> {
     try {
       const deleted = await this.http
@@ -136,15 +157,22 @@ export class GiftsService {
   async addGiftToUser(uuid: string): Promise<boolean> {
     try {
       const updatedUser = await this.http
-        .post<boolean>(`${environment.apiUrl}/api/users/${uuid}/gift`, {
-          headers: this.headers,
-        })
+        .post(
+          `${environment.apiUrl}/api/users/add-gift`,
+          {
+            giftUuid: uuid,
+          },
+          {
+            headers: this.headers,
+          }
+        )
         .toPromise();
       if (!updatedUser) {
         return false;
       }
       return true;
     } catch (e) {
+      console.log(e);
       if (e instanceof HttpErrorResponse && e.status === 401) {
         localStorage.removeItem("token");
         this.router.navigate(["/login"]);

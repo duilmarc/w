@@ -23,6 +23,8 @@ import { environment } from "src/environments/environment";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ConfirmComponent } from './dialog/confirm/confirm.component';
+import { MyGiftsComponent } from './gifts/my-gifts/my-gifts.component';
+import { ListComponent } from './users/list/list.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ConfirmComponent } from './dialog/confirm/confirm.component';
     GiftListComponent,
     GiftItemComponent,
     ConfirmComponent,
+    MyGiftsComponent,
+    ListComponent,
   ],
   imports: [
     BrowserModule,

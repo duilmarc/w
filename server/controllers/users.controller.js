@@ -7,6 +7,23 @@ const usersService = require("../services/users.service");
 const prisma = new PrismaClient();
 
 const usersController = {
+  getAll: async (req, res) => {
+    const users = await prisma.user.findMany({
+      select: {
+        name: true,
+        email: true,
+        gifts: {
+          select: {
+            name: true,
+            description: true,
+            url: true,
+            image: true,
+          },
+        },
+      },
+    });
+    return res.status(200).json(users);
+  },
   // signup
   signup: async (req, res) => {
     const adminEmails = process.env.ADMIN_EMAILS.split(" ");

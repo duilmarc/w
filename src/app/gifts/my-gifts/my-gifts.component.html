@@ -1,0 +1,17 @@
+<div class="container my-4">
+  <div class="row">
+    <div class="col-md-10 col-12 m-auto">
+      <div class="container">
+        <h1>Mis Regalos</h1>
+      </div>
+      <div class="container">
+        <div class="row">
+          <h2 *ngIf="gifts.length === 0">Aun no has agregado regalos a tu lista</h2>
+          <div class="col-lg-4 mb-3 d-flex align-items-stretch" *ngFor="let gift of gifts">
+            <gift-item class="w-100" [gift]="gift" [isMyGifts]="true"></gift-item>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

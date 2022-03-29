@@ -6,6 +6,20 @@ const giftsController = {
     const gifts = await prisma.gift.findMany();
     return res.status(200).json(gifts);
   },
+  myGifts: async (req, res) => {
+    const { uuid } = req.user;
+    const user = await prisma.user.findUnique({
+      where: {
+        uuid,
+      },
+    });
+    const gifts = await prisma.gift.findMany({
+      where: {
+        userId: user.id,
+      },
+    });
+    return res.status(200).json(gifts);
+  },
   addGift: async (req, res) => {
     const { name, description, url, image } = req.body;
     const gift = await prisma.gift.create({
@@ -39,19 +53,24 @@ const giftsController = {
     if (!gift) {
       return res.status(404).json({ message: "Gift not found" });
     }
-    await prisma.user.update({
-      where: {
-        id: userId,
-      },
-      data: {
-        gifts: {
-          connect: {
-            id: gift.id,
+    try {
+      await prisma.user.update({
+        where: {
+          id: user.id,
+        },
+        data: {
+          gifts: {
+            connect: {
+              id: gift.id,
+            },
           },
         },
-      },
-    });
-    return res.status(200).json(gift);
+      });
+      return res.status(200).json(gift);
+    } catch (e) {
+      console.log(e);
+      return res.status(500).json({ message: "Something went wrong" });
+    }
   },
   getOne: async (req, res) => {
     const { uuid } = req.params;
