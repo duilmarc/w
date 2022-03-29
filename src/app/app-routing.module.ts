@@ -42,10 +42,12 @@ const routes: Routes = [
   {
     path: "gifts/my",
     component: MyGiftsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: "users",
     component: ListComponent,
+    canActivate: [AdminGuard],
   }
 ];
 
