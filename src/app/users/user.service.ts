@@ -18,6 +18,13 @@ export class UserService {
   };
   constructor(private readonly http: HttpClient) {}
 
+  updateHeaders() {
+    this.headers = {
+      ...this.headers,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
+  }
+
   async signUp(user: User): Promise<boolean> {
     const token = await this.http
       .post<{ token: string }>(environment.apiUrl + "/api/users/signup", user)
@@ -68,15 +75,21 @@ export class UserService {
     if (!this.isAdmin()) {
       return [];
     }
-    const users = await this.http.get<UserWithGifts[]>(
-      environment.apiUrl + "/api/users",
-      {
-        headers: this.headers,
-      }
-    );
-    const result = await lastValueFrom(users);
-    console.log(result);
-    return lastValueFrom(users);
+    try {
+      this.updateHeaders();
+      const users = await this.http.get<UserWithGifts[]>(
+        environment.apiUrl + "/api/users",
+        {
+          headers: this.headers,
+        }
+      );
+      const result = await lastValueFrom(users);
+      console.log(result);
+      return lastValueFrom(users);
+    } catch (e) {
+      console.log(e);
+      return [];
+    }
   }
 
   isLoggedIn(): boolean {

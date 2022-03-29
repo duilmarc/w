@@ -8,7 +8,7 @@ const {
 router
   .get("/", giftsController.getAll)
   .post("/", [tokenMiddleware, adminMiddleware], giftsController.addGift)
-  .get("/my", [tokenMiddleware], giftsController.myGifts)
+  .get("/my-gifts", tokenMiddleware, giftsController.myGifts)
   .get("/:uuid", giftsController.getOne)
   .put("/:uuid", [tokenMiddleware, adminMiddleware], giftsController.editGift)
   .delete(

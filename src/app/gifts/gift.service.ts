@@ -20,8 +20,16 @@ export class GiftsService {
     private readonly router: Router
   ) {}
 
+  updateHeaders() {
+    this.headers = {
+      ...this.headers,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
+  }
+
   async getGifts(): Promise<Gift[]> {
     try {
+      this.updateHeaders();
       const gifts = await this.http
         .get<Gift[]>(`${environment.apiUrl}/api/gifts`, {
           headers: this.headers,
@@ -43,6 +51,7 @@ export class GiftsService {
 
   async getGift(uuid: string): Promise<Gift | null> {
     try {
+      this.updateHeaders();
       const gift = await this.http
         .get<Gift>(`${environment.apiUrl}/api/gifts/${uuid}`, {
           headers: this.headers,
@@ -62,8 +71,9 @@ export class GiftsService {
 
   async getMyGifts(): Promise<Gift[]> {
     try {
+      this.updateHeaders();
       const gifts = await this.http
-        .get<Gift[]>(`${environment.apiUrl}/api/gifts/my`, {
+        .get<Gift[]>(`${environment.apiUrl}/api/gifts/my-gifts`, {
           headers: this.headers,
         })
         .toPromise();
@@ -71,6 +81,7 @@ export class GiftsService {
       // this.giftsChanged.next(this.gifts.slice());
       return gifts ?? [];
     } catch (e) {
+      console.log(e);
       if (e instanceof HttpErrorResponse && e.status === 401) {
         localStorage.removeItem("token");
         this.router.navigate(["/login"]);
@@ -82,6 +93,7 @@ export class GiftsService {
 
   async updateGift(gift: Gift): Promise<Gift | null> {
     try {
+      this.updateHeaders();
       const updatedGift = await this.http
         .put<Gift>(`${environment.apiUrl}/api/gifts/${gift.uuid}`, gift, {
           headers: this.headers,
@@ -107,6 +119,7 @@ export class GiftsService {
 
   async addGift(gift: Gift): Promise<Gift | null> {
     try {
+      this.updateHeaders();
       const newGift = await this.http
         .post<Gift>(`${environment.apiUrl}/api/gifts`, gift, {
           headers: this.headers,
@@ -131,6 +144,7 @@ export class GiftsService {
 
   async deleteGift(uuid: string): Promise<boolean> {
     try {
+      this.updateHeaders();
       const deleted = await this.http
         .delete<boolean>(`${environment.apiUrl}/api/gifts/${uuid}`, {
           headers: this.headers,
@@ -156,6 +170,7 @@ export class GiftsService {
 
   async addGiftToUser(uuid: string): Promise<boolean> {
     try {
+      this.updateHeaders();
       const updatedUser = await this.http
         .post(
           `${environment.apiUrl}/api/users/add-gift`,
