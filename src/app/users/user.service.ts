@@ -84,7 +84,7 @@ export class UserService {
         }
       );
       const result = await lastValueFrom(users);
-      console.log(result);
+      // console.log(result);
       return lastValueFrom(users);
     } catch (e) {
       console.log(e);

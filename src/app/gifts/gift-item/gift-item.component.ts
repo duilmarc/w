@@ -29,7 +29,9 @@ export class GiftItemComponent implements OnInit {
   deleteGift() {
     if (this.isAdmin) {
       this.dialogService
-        .openConfirmDialog("Estas seguro que quieres eliminar este regalo?")
+        .openConfirmDialog(
+          `Estas seguro que quieres eliminar <strong>${this.gift.name}</strong>?`
+        )
         .subscribe(async (result: boolean) => {
           if (result) {
             await this.giftsService.deleteGift(this.gift.uuid ?? "");
@@ -42,7 +44,7 @@ export class GiftItemComponent implements OnInit {
     if (this.isLoggedIn) {
       this.dialogService
         .openConfirmDialog(
-          "Estas seguro que quieres agregar este regalo a tus regalos?"
+          `Estas seguro que quieres agregar <strong>${this.gift.name}</strong> a tus regalos?`
         )
         .subscribe(async (result: boolean) => {
           if (result) {

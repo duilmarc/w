@@ -2,6 +2,8 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatIconModule } from "@angular/material/icon";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { NavbarComponent } from "./navbar/navbar.component";
@@ -22,9 +24,10 @@ import {
 import { environment } from "src/environments/environment";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ConfirmComponent } from './dialog/confirm/confirm.component';
-import { MyGiftsComponent } from './gifts/my-gifts/my-gifts.component';
-import { ListComponent } from './users/list/list.component';
+import { ConfirmComponent } from "./dialog/confirm/confirm.component";
+import { MyGiftsComponent } from "./gifts/my-gifts/my-gifts.component";
+import { ListComponent } from "./users/list/list.component";
+import { MatListModule } from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { ListComponent } from './users/list/list.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatDialogModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [
     {

@@ -21,6 +21,9 @@ const usersController = {
           },
         },
       },
+      // where: {
+      //   role: Role.USER,
+      // },
     });
     return res.status(200).json(users);
   },

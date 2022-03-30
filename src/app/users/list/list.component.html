@@ -1,1 +1,60 @@
-<div>this works</div>
+<div class="container my-4">
+  <div class="row">
+    <div class="col-md-10 col-12 m-auto">
+      <div class="container">
+        <h1>Usuarios / Invitados</h1>
+      </div>
+
+      <div class="example-action-buttons">
+        <button mat-button (click)="accordion.openAll()">Expand All</button>
+        <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+      </div>
+      <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel *ngFor="let user of users">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{user.name}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{user.email}}
+              <mat-icon>card_giftcard</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div *ngIf="user.gifts.length === 0">
+            No hay regalos aun
+          </div>
+          <mat-nav-list *ngIf="user.gifts.length > 0">
+            <mat-list-item *ngFor="let gifts of user.gifts">
+              <img matListAvatar src="{{gifts.image}}" alt="{{gifts.name}}">
+              <h4 matLine>{{gifts.name}}</h4>
+              <p matLine>{{gifts.description}}</p>
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-expansion-panel>
+        <!-- <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Destination
+            </mat-panel-title>
+            <mat-panel-description>
+              Type the country name
+              <mat-icon>map</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Day of the trip
+            </mat-panel-title>
+            <mat-panel-description>
+              Inform the date you wish to travel
+              <mat-icon>date_range</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel> -->
+      </mat-accordion>
+    </div>
+  </div>
+</div>
