@@ -9,6 +9,7 @@ import { UserService } from "../users/user.service";
   styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent implements OnInit {
+  @ViewChild("navbarToggler", { read: ElementRef }) navbarToggler!: ElementRef;
   @ViewChild("navbarCollapse") navbarCollapse!: ElementRef;
   socialUser?: SocialUser;
   isLoggedIn: boolean = false;
@@ -19,13 +20,19 @@ export class NavbarComponent implements OnInit {
     private readonly userService: UserService
   ) {}
 
+  navBarTogglerIsVisible() {
+    return this.navbarCollapse.nativeElement.classList.contains("show");
+  }
+
   ngOnInit(): void {
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
     });
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // this.navbarCollapse.nativeElement.classList.remove("show");
+        if (this.navBarTogglerIsVisible()) {
+          this.navbarToggler.nativeElement.click();
+        }
         this.isLoggedIn = this.userService.isLoggedIn();
         this.isAdmin = this.userService.isAdmin();
       }
