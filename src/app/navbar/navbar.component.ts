@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 import { SocialAuthService, SocialUser } from "angularx-social-login";
 import { UserService } from "../users/user.service";
@@ -9,6 +9,7 @@ import { UserService } from "../users/user.service";
   styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent implements OnInit {
+  @ViewChild("navbarCollapse") navbarCollapse!: ElementRef;
   socialUser?: SocialUser;
   isLoggedIn: boolean = false;
   isAdmin: boolean = false;
@@ -24,6 +25,7 @@ export class NavbarComponent implements OnInit {
     });
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
+        // this.navbarCollapse.nativeElement.classList.remove("show");
         this.isLoggedIn = this.userService.isLoggedIn();
         this.isAdmin = this.userService.isAdmin();
       }

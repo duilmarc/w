@@ -28,7 +28,8 @@ import { ConfirmComponent } from "./dialog/confirm/confirm.component";
 import { MyGiftsComponent } from "./gifts/my-gifts/my-gifts.component";
 import { ListComponent } from "./users/list/list.component";
 import { MatListModule } from "@angular/material/list";
-
+import { MatRippleModule } from "@angular/material/core";
+import { MatMenuModule } from "@angular/material/menu";
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +56,9 @@ import { MatListModule } from "@angular/material/list";
     MatDialogModule,
     MatExpansionModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatRippleModule,
+    MatMenuModule
   ],
   providers: [
     {
