@@ -21,7 +21,7 @@
   <div class="card-body d-flex flex-column">
     <h3 class="card-title">{{gift.name}}</h3>
     <p class="card-text mh-200 mb-4">{{gift.description}}</p>
-    <a href="{{gift.url}}" class="link-primary">Link al producto</a>
+    <a href="{{gift.url}}" target="_blank" class="link-primary">Link al producto</a>
     <div *ngIf="isAdmin && !isMyGifts" class="mt-2">
       <button mat-raised-button class="btn btn-primary me-2" [routerLink]="[gift.uuid,'edit']">
         Editar
