@@ -6,8 +6,9 @@
 </div> -->
 
 <div class="container">
-  <div class="row">
-    <div class="col-lg-4 mb-3 d-flex align-items-stretch" *ngFor="let gift of gifts">
+  <div class="row g-5">
+    <h2 *ngIf="gifts.length === 0">Aun no has agregado regalos a tu lista</h2>
+    <div class="col-lg-4 px-4 mb-3 d-flex align-items-stretch" *ngFor="let gift of gifts">
       <gift-item class="w-100" [gift]="gift"></gift-item>
     </div>
   </div>

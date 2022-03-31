@@ -1,4 +1,4 @@
-<div class="container my-5">
+<!-- <div class="container my-5">
   <div class="row">
     <div class="col-12 col-md-10 m-auto">
       <h3>{{edit?'Editar':'Agregar'}} Regalo</h3>
@@ -37,6 +37,50 @@
         </div>
         <button mat-raised-button type="submit" class="btn mx-2 btn-primary">{{edit?'Editar':'Agregar'}} Regalo</button>
       </form>
+    </div>
+  </div>
+</div> -->
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <div class="divider-right">
+        <h3>{{edit?'Editar':'Agregar'}} Regalo</h3>
+        <form #f="ngForm" (ngSubmit)="addTodo(f)">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" name="name" [ngModel]="gift?.name" #name="ngModel" class="form-control" id="name" required>
+            <div *ngIf="!name.valid && name.touched" class="alert alert-danger">
+              Ingresa el nombre del regalo
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Descripcion</label>
+            <input type="text" name="description" [ngModel]="gift?.description" #description="ngModel"
+              class="form-control" id="description">
+            <div *ngIf="!description.valid && description.touched" class="alert alert-danger">
+              Ingresa una description valida
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="url" class="form-label">Url</label>
+            <input type="text" name="url" [ngModel]="gift?.url" #url="ngModel" class="form-control" id="url">
+            <div *ngIf="!url.valid && url.touched" class="alert alert-danger">
+              Ingresa una url valida
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Imagen url</label>
+            <input type="text" name="image" [ngModel]="gift?.image" #image="ngModel" class="form-control" id="image">
+            <div *ngIf="!image.valid && image.touched" class="alert alert-danger">
+              Ingresa una image valida
+            </div>
+          </div>
+          <div class="alert alert-danger" *ngIf="errorMessage">
+            {{errorMessage}}
+          </div>
+          <button mat-raised-button type="submit" class="btn mx-2 btn-primary">{{edit?'Editar':'Agregar'}} Regalo</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

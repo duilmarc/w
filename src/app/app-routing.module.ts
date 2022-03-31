@@ -26,18 +26,28 @@ const routes: Routes = [
   {
     path: "gifts",
     component: GiftsComponent,
-    children: [
-      {
-        path: ":uuid/edit",
-        component: AddGiftComponent,
-        canActivate: [AdminGuard],
-      },
-      {
-        path: "add",
-        component: AddGiftComponent,
-        canActivate: [AdminGuard],
-      },
-    ],
+    // children: [
+    //   {
+    //     path: ":uuid/edit",
+    //     component: AddGiftComponent,
+    //     canActivate: [AdminGuard],
+    //   },
+    //   {
+    //     path: "add",
+    //     component: AddGiftComponent,
+    //     canActivate: [AdminGuard],
+    //   },
+    // ],
+  },
+  {
+    path: "gifts/:uuid/edit",
+    component: AddGiftComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: "gifts/add",
+    component: AddGiftComponent,
+    canActivate: [AdminGuard],
   },
   {
     path: "gifts/my",

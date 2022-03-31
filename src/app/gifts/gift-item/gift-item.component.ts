@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { faTrashAlt, faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { DialogService } from "src/app/dialog/dialog.service";
 import { UserService } from "src/app/users/user.service";
 import { Gift } from "../gift.model";
@@ -10,6 +11,8 @@ import { GiftsService } from "../gift.service";
   styleUrls: ["./gift-item.component.scss"],
 })
 export class GiftItemComponent implements OnInit {
+  faPenToSquare = faPenToSquare;
+  faTrashAlt = faTrashAlt;
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
   @Input() gift!: Gift;

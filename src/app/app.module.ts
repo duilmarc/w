@@ -30,6 +30,9 @@ import { ListComponent } from "./users/list/list.component";
 import { MatListModule } from "@angular/material/list";
 import { MatRippleModule } from "@angular/material/core";
 import { MatMenuModule } from "@angular/material/menu";
+import { MatCardModule } from "@angular/material/card";
+import { MatDividerModule } from "@angular/material/divider";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +61,9 @@ import { MatMenuModule } from "@angular/material/menu";
     MatIconModule,
     MatListModule,
     MatRippleModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule,
+    MatDividerModule
   ],
   providers: [
     {

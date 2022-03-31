@@ -15,8 +15,33 @@
   </div>
 </div> -->
 
+<mat-card class="example-card">
+  <mat-card-header>
+    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+  </mat-card-header>
+  <!-- <mat-divider></mat-divider> -->
+  <img mat-card-image src="{{gift.image}}" alt="{{gift.name}}">
+  <mat-card-title>{{gift.name}}</mat-card-title>
+  <mat-card-content>
+    <p>
+      {{gift.description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions *ngIf="!isMyGifts">
+    <button *ngIf="isLoggedIn" mat-raised-button class="btn btn-success" (click)="addToMyGifts()">Agregar a mis regalos</button>
+    <button *ngIf="isAdmin" mat-raised-button class="icon-btn me-0 btn-primary" [routerLink]="[gift.uuid,'edit']">
+      <fa-icon [icon]="faPenToSquare"></fa-icon>
+    </button>
+    <button *ngIf="isAdmin" mat-raised-button class="icon-btn me-0 btn-danger" (click)="deleteGift()">
+      <fa-icon [icon]="faTrashAlt"></fa-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
 
-<div class="card">
+
+
+<!-- <div class="card">
   <img src="{{gift.image}}" class="card-img-top gift-img" alt="Card Image">
   <div class="card-body d-flex flex-column">
     <h3 class="card-title">{{gift.name}}</h3>
@@ -31,9 +56,7 @@
       </button>
     </div>
     <div *ngIf="isLoggedIn && !isMyGifts" class="mt-2">
-      <!-- <button mat-button class="btn btn-primary me-2" [routerLink]="[gift.uuid,'edit']">Editar</button>
-      <button mat-button class="btn btn-danger me-2" (click)="deleteGift()">Eliminar</button> -->
       <button mat-raised-button class="btn btn-success" (click)="addToMyGifts()">Agregar a mis regalos</button>
     </div>
   </div>
-</div>
+</div> -->
