@@ -1,3 +1,6 @@
-.divider-right{
-  border-right: 1px solid #666;
+// media query to only should be visible for 768px and up
+@media (min-width:768px){
+  .divider-right{
+    border-right: 1px solid #666;
+  }
 }

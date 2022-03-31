@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Gift } from "../gift.model";
@@ -10,7 +10,8 @@ import { GiftsService } from "../gift.service";
   styleUrls: ["./add-gift.component.scss"],
 })
 export class AddGiftComponent implements OnInit {
-  gift?: Gift | null;
+  @ViewChild("img", { read: ElementRef }) img!: ElementRef;
+  gift: Gift = new Gift("", "", "", "", "https://via.placeholder.com/250x250");
   edit: boolean = false;
   errorMessage = "";
 
@@ -32,6 +33,11 @@ export class AddGiftComponent implements OnInit {
         }
       }
     });
+  }
+
+  clickImage(): number {
+    this.img.nativeElement.select()
+    return 0;
   }
 
   async addTodo(form: NgForm) {

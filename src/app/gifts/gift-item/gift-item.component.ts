@@ -15,6 +15,7 @@ export class GiftItemComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
+  @Input() disableButtons: boolean = false;
   @Input() gift!: Gift;
   @Input() isMyGifts: boolean = false;
 
@@ -30,32 +31,36 @@ export class GiftItemComponent implements OnInit {
   }
 
   deleteGift() {
-    if (this.isAdmin) {
-      this.dialogService
-        .openConfirmDialog(
-          `Estas seguro que quieres eliminar <strong>${this.gift.name}</strong>?`
-        )
-        .subscribe(async (result: boolean) => {
-          if (result) {
-            await this.giftsService.deleteGift(this.gift.uuid ?? "");
-          }
-        });
+    if (!this.disableButtons) {
+      if (this.isAdmin) {
+        this.dialogService
+          .openConfirmDialog(
+            `Estas seguro que quieres eliminar <strong>${this.gift.name}</strong>?`
+          )
+          .subscribe(async (result: boolean) => {
+            if (result) {
+              await this.giftsService.deleteGift(this.gift.uuid ?? "");
+            }
+          });
+      }
     }
   }
 
   addToMyGifts() {
-    if (this.isLoggedIn) {
-      this.dialogService
-        .openConfirmDialog(
-          `Estas seguro que quieres agregar <strong>${this.gift.name}</strong> a tus regalos?`
-        )
-        .subscribe(async (result: boolean) => {
-          if (result) {
-            await this.giftsService.addGiftToUser(this.gift.uuid ?? "");
-          } else {
-            console.log("cancelled");
-          }
-        });
+    if (!this.disableButtons) {
+      if (this.isLoggedIn) {
+        this.dialogService
+          .openConfirmDialog(
+            `Estas seguro que quieres agregar <strong>${this.gift.name}</strong> a tus regalos?`
+          )
+          .subscribe(async (result: boolean) => {
+            if (result) {
+              await this.giftsService.addGiftToUser(this.gift.uuid ?? "");
+            } else {
+              console.log("cancelled");
+            }
+          });
+      }
     }
   }
 }
