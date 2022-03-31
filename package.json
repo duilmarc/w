@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "postinstall": "cd server && npx prisma generate && npx prisma migrate dev",
+    "postinstall": "cd server && npx prisma generate",
     "prisma:run:migration": "cd server && prisma migrate deploy",
     "server": "node server"
   },
