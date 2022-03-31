@@ -5,7 +5,9 @@
         <div class="mb-3">
           <label for="name" class="form-label">Nombre</label>
           <input type="name" name="name" [ngModel]="user?.name" #name="ngModel" class="form-control" id="name"
-            aria-describedby="emailHelp" pattern="(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})" required>
+            aria-describedby="emailHelp"
+            pattern="(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})"
+            required>
           <!-- <div id="emailHelp" class="form-text">We'll never share your name with anyone else.</div> -->
           <div *ngIf="!name.valid && name.touched" class="alert alert-danger">
             Ingresa tu nombre
@@ -42,11 +44,13 @@
         <div class="mb-3">
           <span>Ya estas registrado? intenta <a [routerLink]="['/login']">iniciar sesion</a></span>
         </div>
-        <button [disabled]="!socialButtonsEnabled" mat-raised-button type="submit" class="btn mx-2 btn-primary">Registrar</button>
-        <button mat-raised-button type="button" (click)="loginWithGoogle()" class="google-login-btn mx-2 btn btn-outline-secondary">
+        <button mat-raised-button type="submit" class="btn mx-2 btn-primary">Registrar</button>
+        <button [disabled]="!socialButtonsEnabled" mat-raised-button type="button" (click)="loginWithGoogle()"
+          class="google-login-btn mx-2 btn btn-outline-secondary">
           <fa-icon [icon]="faGoogle"></fa-icon> Sign in with Google
         </button>
-        <button [disabled]="!socialButtonsEnabled" mat-raised-button type="button" (click)="loginWithFacebook()" class="facebook-login-btn mx-2 btn btn-outline-primary">
+        <button [disabled]="!socialButtonsEnabled" mat-raised-button type="button" (click)="loginWithFacebook()"
+          class="facebook-login-btn mx-2 btn btn-outline-primary">
           <fa-icon [icon]="faFacebook"></fa-icon> Sign in with Facebook
         </button>
       </form>
