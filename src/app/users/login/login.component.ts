@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   errorMessage = "";
   faFacebook = faFacebookF;
   faGoogle = faGoogle;
+  socialButtonsEnabled: boolean = false;
   constructor(
     private readonly userService: UserService,
     private readonly router: Router,
@@ -28,6 +29,9 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.socialAuthService.initState.subscribe((state) => {
+      this.socialButtonsEnabled = state;
+    });
     if (this.userService.isLoggedIn()) {
       // console.log('something here');
       this.router.navigate(["/gifts"]);

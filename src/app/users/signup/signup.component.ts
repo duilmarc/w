@@ -3,7 +3,11 @@ import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from "angularx-social-login";
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  SocialAuthService,
+} from "angularx-social-login";
 import { User } from "../user.model";
 import { UserService } from "../user.service";
 
@@ -19,6 +23,7 @@ export class SignupComponent implements OnInit {
   errorMessage = "";
   faFacebook = faFacebookF;
   faGoogle = faGoogle;
+  socialButtonsEnabled: boolean = false;
   constructor(
     private readonly userService: UserService,
     private readonly router: Router,
@@ -26,6 +31,9 @@ export class SignupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.socialAuthService.initState.subscribe((state) => {
+      this.socialButtonsEnabled = state;
+    });
     if (this.userService.isLoggedIn()) {
       this.router.navigate(["/gifts"]);
     }
