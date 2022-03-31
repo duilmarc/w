@@ -28,3 +28,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .nav-link.text-white.clickable:hover{
   color: rgba(255, 255, 255, 0.75) !important;
 }
+
+.mat-expansion-panel-header .mat-content{
+  overflow: visible !important;
+}

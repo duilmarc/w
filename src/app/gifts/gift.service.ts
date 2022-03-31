@@ -182,6 +182,9 @@ export class GiftsService {
           }
         )
         .toPromise();
+        const index = this.gifts.findIndex((g) => g.uuid === uuid);
+        this.gifts.splice(index, 1);
+        this.giftsChanged.next(this.gifts.slice());
       if (!updatedUser) {
         return false;
       }

@@ -52,9 +52,11 @@ export class AddGiftComponent implements OnInit {
     } as Gift;
     if (this.edit) {
       await this.giftsService.updateGift(gift);
+      this.router.navigate(["/gifts"]);
       return;
     }
     await this.giftsService.addGift(gift);
+    this.router.navigate(["/gifts"]);
     form.reset();
   }
 }

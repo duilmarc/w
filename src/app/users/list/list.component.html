@@ -11,25 +11,35 @@
       </div>
       <mat-accordion class="example-headers-align" multi>
         <mat-expansion-panel *ngFor="let user of users">
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header class="panel">
             <mat-panel-title>
               {{user.name}}
             </mat-panel-title>
             <mat-panel-description>
               {{user.email}}
-              <mat-icon>card_giftcard</mat-icon>
+              <mat-icon [matBadgeHidden]="user.gifts.length===0" matBadge="{{user.gifts.length}}">card_giftcard
+              </mat-icon>
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div *ngIf="user.gifts.length === 0">
             No hay regalos aun
           </div>
-          <mat-nav-list *ngIf="user.gifts.length > 0">
-            <mat-list-item *ngFor="let gifts of user.gifts">
-              <img matListAvatar src="{{gifts.image}}" alt="{{gifts.name}}">
-              <h4 matLine>{{gifts.name}}</h4>
-              <p matLine>{{gifts.description}}</p>
+          <mat-list *ngIf="user.gifts.length > 0">
+            <mat-list-item *ngFor="let gift of user.gifts">
+              <img matListAvatar src="{{gift.image}}" alt="{{gift.name}}">
+              <h4 matLine>{{gift.name}}</h4>
+              <p matLine>{{gift.description}}</p>
+              <div>
+
+                <button mat-raised-button class="icon-btn me-0 btn-danger" (click)="deleteGift(user,gift)">
+                  <fa-icon [icon]="faTrashAlt"></fa-icon>
+                </button>
+                <!-- <button mat-icon-button class="btn-danger" matListIcon >
+                  <mat-icon class="mt--16">delete</mat-icon>
+                </button> -->
+              </div>
             </mat-list-item>
-          </mat-nav-list>
+          </mat-list>
         </mat-expansion-panel>
         <!-- <mat-expansion-panel>
           <mat-expansion-panel-header>

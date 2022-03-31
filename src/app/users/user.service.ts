@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { Role } from "@prisma/client";
-import { lastValueFrom } from "rxjs";
+import { Gift, Role } from "@prisma/client";
+import { lastValueFrom, Subject } from "rxjs";
 import { environment } from "src/environments/environment";
 import { UserWithGifts } from "./user-with-gifts.model";
 import { User } from "./user.model";
@@ -12,6 +12,8 @@ const helper = new JwtHelperService();
   providedIn: "root",
 })
 export class UserService {
+  usersChanged = new Subject<UserWithGifts[]>();
+  private users: UserWithGifts[] = [];
   headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -84,11 +86,35 @@ export class UserService {
         }
       );
       const result = await lastValueFrom(users);
-      // console.log(result);
+      this.users = result?.slice() ?? [];
+      this.usersChanged.next(this.users);
       return lastValueFrom(users);
     } catch (e) {
       console.log(e);
       return [];
+    }
+  }
+
+  async deleteGift(user: UserWithGifts, gift: Gift): Promise<void> {
+    if (!this.isAdmin()) {
+      return;
+    }
+    try {
+      this.updateHeaders();
+      const result = await this.http.delete(
+        environment.apiUrl + "/api/users/delete-gift",
+        {
+          headers: this.headers,
+          body: {
+            userEmail: user.email,
+            giftUuid: gift.uuid,
+          },
+        }
+      );
+      await lastValueFrom(result);
+      await this.getUsers();
+    } catch (e) {
+      console.log(e);
     }
   }
 

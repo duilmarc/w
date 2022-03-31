@@ -14,6 +14,7 @@ const usersController = {
         email: true,
         gifts: {
           select: {
+            uuid: true,
             name: true,
             description: true,
             url: true,

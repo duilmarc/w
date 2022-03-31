@@ -8,6 +8,7 @@ router
   .post("/signup", usersController.signup)
   .post("/login", usersController.login)
   .post("/social-login", usersController.socialLogin)
-  .post("/add-gift", tokenMiddleware, giftsController.addToUser);
+  .post("/add-gift", tokenMiddleware, giftsController.addToUser)
+  .delete("/delete-gift", tokenMiddleware, giftsController.deleteFromUser);
 
 module.exports = router;

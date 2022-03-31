@@ -3,7 +3,11 @@ const prisma = new PrismaClient();
 
 const giftsController = {
   getAll: async (req, res) => {
-    const gifts = await prisma.gift.findMany();
+    const gifts = await prisma.gift.findMany({
+      where: {
+        userId: null,
+      },
+    });
     return res.status(200).json(gifts);
   },
   myGifts: async (req, res) => {
@@ -61,6 +65,46 @@ const giftsController = {
         data: {
           gifts: {
             connect: {
+              id: gift.id,
+            },
+          },
+        },
+      });
+      return res.status(200).json(gift);
+    } catch (e) {
+      console.log(e);
+      return res.status(500).json({ message: "Something went wrong" });
+    }
+  },
+  deleteFromUser: async (req, res) => {
+    const { giftUuid, userEmail } = req.body;
+    console.log(req.body);
+    const user = await prisma.user.findUnique({
+      where: {
+        email: userEmail,
+      },
+      rejectOnNotFound: false,
+    });
+    const gift = await prisma.gift.findUnique({
+      where: {
+        uuid: giftUuid,
+      },
+      rejectOnNotFound: false,
+    });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    if (!gift) {
+      return res.status(404).json({ message: "Gift not found" });
+    }
+    try {
+      await prisma.user.update({
+        where: {
+          id: user.id,
+        },
+        data: {
+          gifts: {
+            disconnect: {
               id: gift.id,
             },
           },
