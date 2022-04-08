@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AddGiftComponent } from "./gifts/add-gift/add-gift.component";
 import { GiftsComponent } from "./gifts/gifts.component";
+import { InstructionsComponent } from "./gifts/instructions/instructions.component";
 import { MyGiftsComponent } from "./gifts/my-gifts/my-gifts.component";
 import { AdminGuard } from "./guards/admin.guard";
 import { AuthGuard } from "./guards/auth.guard";
@@ -12,7 +13,7 @@ import { SignupComponent } from "./users/signup/signup.component";
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "gifts",
+    redirectTo: "instructions",
     pathMatch: "full",
   },
   {
@@ -58,6 +59,14 @@ const routes: Routes = [
     path: "users",
     component: ListComponent,
     canActivate: [AdminGuard],
+  },
+  {
+    path:'instructions',
+    component: InstructionsComponent
+  },
+  {
+    path: "**",
+    redirectTo: "gifts",
   }
 ];
 

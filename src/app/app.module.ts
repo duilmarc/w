@@ -33,6 +33,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatCardModule } from "@angular/material/card";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatBadgeModule } from "@angular/material/badge";
+import { InstructionsComponent } from './gifts/instructions/instructions.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MatBadgeModule } from "@angular/material/badge";
     ConfirmComponent,
     MyGiftsComponent,
     ListComponent,
+    InstructionsComponent,
   ],
   imports: [
     BrowserModule,
