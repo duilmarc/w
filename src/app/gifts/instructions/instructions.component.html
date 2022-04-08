@@ -21,7 +21,7 @@
         </p>
         <p>
           para poder entregarnos el regalo, puedes enviarlo a nuestra casa:
-          <a href="https://goo.gl/maps/Fiz2kcwxSpHntky1A" target="_blank">C.H Dean Valdivia Sector 4 Mz.P Lt.4 Cayma</a>
+          <a *ngIf="isLoggedIn" href="https://goo.gl/maps/Fiz2kcwxSpHntky1A" target="_blank">C.H Dean Valdivia Sector 4 Mz.P Lt.4 Cayma</a>
           <a routerLink="/login" *ngIf="!isLoggedIn">Inicia sesion para ver la direccion</a>
         </p>
         <!-- <img mat-card-image src="/assets/qr-yape-cut.jpg" alt="yape-qr"> -->
