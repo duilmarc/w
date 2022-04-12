@@ -32,3 +32,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-expansion-panel-header .mat-content{
   overflow: visible !important;
 }
+
+.qr-yape .mat-card-header-text {
+  text-align: center;
+  margin: 0 !important;
+}
+
+.qr-yape .mat-card-header{
+  justify-content: center;
+}

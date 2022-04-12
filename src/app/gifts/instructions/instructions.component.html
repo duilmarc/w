@@ -10,21 +10,51 @@
           Nos sentimos muy felices de compartir esta oportunidad, y los regalos que se encuentran en esta
           pagina son los que hemos encontrado escenciales para formar nuestro hogar.
         </p>
+        <h2>Que debo hacer?</h2>
         <p>
-          Eres libre de escoger cuantos regalos te gustaria compartir con nosotros o llevar un regalo
+          Eres libre de escoger cuantos regalos te gustaria compartir con nosotros, solo haz click en el boton
+          agregar a mis regalos, o puedes llevar un regalo
           de tu elección, tambien hemos habilitado la opcion de que nos puedas hacer un deposito o yape
-          puedes encontrar esa informacion al final de la pagina
+          puedes encontrar esa informacion al final de la pagina.
         </p>
+        <h2>Que hacer luego de elegir un regalo?</h2>
         <p>
-          Si ya elegiste un regalo, puedes verlo en la pestaña "mis regalos", todos los regalos tienen links a la
+          Si ya elegiste un regalo, puedes verlo en la pestaña <span *ngIf="!isLoggedIn">"mis regalos"</span><a
+            routerLink="/gifts/my" *ngIf="isLoggedIn">"Mis Regalos"</a>, todos los regalos tienen links a la
           tienda donde los hemos encontrado.
         </p>
         <p>
-          para poder entregarnos el regalo, puedes enviarlo a nuestra casa:
-          <a *ngIf="isLoggedIn" href="https://goo.gl/maps/Fiz2kcwxSpHntky1A" target="_blank">C.H Dean Valdivia Sector 4 Mz.P Lt.4 Cayma</a>
+          Estamos gustosos de recibir los regalos en la recepción o puedes enviarlos o llevarlos a nuestra casa:
+          <a *ngIf="isLoggedIn" href="https://goo.gl/maps/Fiz2kcwxSpHntky1A" target="_blank">C.H Dean Valdivia Sector 4
+            Mz.P Lt.4 Cayma</a>
           <a routerLink="/login" *ngIf="!isLoggedIn">Inicia sesion para ver la direccion</a>
         </p>
-        <!-- <img mat-card-image src="/assets/qr-yape-cut.jpg" alt="yape-qr"> -->
+        <p *ngIf="isLoggedIn">
+          Si tienes alguna duda o comentario, puedes escribirnos a <a href="mailto:joelvaldezangeles@gmail.com">
+            joelvaldezangeles@gmail.com
+          </a>
+          o llamar al <a href="tel:+51953945798">+51 953 945 798</a>
+        </p>
+        <h2>Informacion bancaria</h2>
+        <p>
+          Mi número de cuenta BCP Soles es 21592956936089.
+          <br>
+          Mi número de cuenta interbancaria es 00221519295693608923.
+        </p>
+        <div class="qr-yape">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>My Codigo Yape QR es:</mat-card-title>
+              <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+            </mat-card-header>
+            <img mat-card-image src="/assets/qr-yape-cut.jpg" alt="yape-qr">
+            <mat-card-content class="text-center">
+              <p>
+                Joel Valdez Angeles
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </div>
       </mat-card>
     </div>
   </div>

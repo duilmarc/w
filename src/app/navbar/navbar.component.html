@@ -22,42 +22,42 @@
         <li class="nav-item">
           <!-- <a class="nav-link" [routerLink]="['/gifts']" [routerLinkActiveOptions]="{exact: true}"
             routerLinkActive="active">Regalos</a> -->
-          <button mat-button [routerLink]="['/gifts']" class="nav-link text-white clickable w-100 text-start"
+          <a mat-button [routerLink]="['/gifts']" class="nav-link text-white clickable w-100 text-start"
             [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
             Regalos
-          </button>
+          </a>
         </li>
         <li *ngIf="isLoggedIn" class="nav-item">
           <!-- <a class="nav-link" [routerLink]="['/gifts/my']" [routerLinkActiveOptions]="{exact: true}"
             routerLinkActive="active">Mis Regalos</a> -->
-          <button mat-button [routerLink]="['/gifts/my']" class="nav-link text-white clickable w-100 text-start"
+          <a mat-button [routerLink]="['/gifts/my']" class="nav-link text-white clickable w-100 text-start"
             [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
             Mis Regalos
-          </button>
+          </a>
         </li>
         <li *ngIf="isAdmin" class="nav-item">
           <!-- <a class="nav-link" [routerLink]="['/gifts/add']" [routerLinkActiveOptions]="{exact: true}"
             routerLinkActive="active">Agregar Regalos</a> -->
-          <button mat-button [routerLink]="['/gifts/add']" class="nav-link text-white clickable w-100 text-start"
+          <a mat-button [routerLink]="['/gifts/add']" class="nav-link text-white clickable w-100 text-start"
             [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
             Agregar Regalos
-          </button>
+          </a>
         </li>
         <li *ngIf="isAdmin" class="nav-item">
           <!-- <a class="nav-link" [routerLink]="['/users']" [routerLinkActiveOptions]="{exact: true}"
             routerLinkActive="active">Lista de Usuarios</a> -->
-          <button mat-button [routerLink]="['/users']" class="nav-link text-white clickable w-100 text-start"
+          <a mat-button [routerLink]="['/users']" class="nav-link text-white clickable w-100 text-start"
             [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
             Lista de Usuarios
-          </button>
+          </a>
         </li>
         <li class="nav-item">
           <!-- <a class="nav-link" [routerLink]="['/gifts']" [routerLinkActiveOptions]="{exact: true}"
             routerLinkActive="active">Regalos</a> -->
-          <button mat-button [routerLink]="['/instructions']" class="nav-link text-white clickable w-100 text-start"
+          <a mat-button [routerLink]="['/instructions']" class="nav-link text-white clickable w-100 text-start"
             [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
             Instrucciones para los regalos
-          </button>
+          </a>
         </li>
       </ul>
       <div>
