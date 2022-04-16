@@ -54,7 +54,7 @@ export class SignupComponent implements OnInit {
     this.passwordMatch = true;
     try {
       await this.userService.signUp(user);
-      this.router.navigate(["/gifts"]);
+      this.router.navigate(["/"]);
     } catch (e) {
       if (e instanceof HttpErrorResponse) {
         this.errorMessage = e.error.message;
@@ -73,7 +73,7 @@ export class SignupComponent implements OnInit {
     if (user) {
       const result = await this.userService.socialLogin(user);
       if (result) {
-        this.router.navigate(["/gifts"]);
+        this.router.navigate(["/"]);
       }
     }
   }
@@ -89,7 +89,7 @@ export class SignupComponent implements OnInit {
     if (user) {
       const result = await this.userService.socialLogin(user);
       if (result) {
-        this.router.navigate(["/gifts"]);
+        this.router.navigate(["/"]);
       }
     }
   }

@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     const user = { email: values.email, password: values.password } as User;
     try {
       await this.userService.logIn(user);
-      this.router.navigate(["/gifts"]);
+      this.router.navigate(["/"]);
     } catch (e) {
       if (e instanceof HttpErrorResponse) {
         this.errorMessage = e.error.message;
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
     if (user) {
       const result = await this.userService.socialLogin(user);
       if (result) {
-        this.router.navigate(["/gifts"]);
+        this.router.navigate(["/"]);
       }
     }
   }
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
     if (user) {
       const result = await this.userService.socialLogin(user);
       if (result) {
-        this.router.navigate(["/gifts"]);
+        this.router.navigate(["/"]);
       }
     }
   }
