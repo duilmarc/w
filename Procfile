@@ -1,3 +1,3 @@
 web: node server
 
-release: npx prisma migrate deploy
+release: cd server && prisma migrate deploy
