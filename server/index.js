@@ -14,6 +14,21 @@ const routes = require("./routes");
 
 const app = express(); // create an instance of express
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested, Content-Type, Accept Authorization"
+  )
+  if (req.method === "OPTIONS") {
+    res.header(
+      "Access-Control-Allow-Methods",
+      "POST, PUT, PATCH, GET, DELETE"
+    )
+    return res.status(200).json({})
+  }
+  next()
+})
 // Tell express to use the following parsers for POST data
 app
   .use(bodyParser.json())
@@ -24,19 +39,6 @@ app
   )
   .use(cookieParser())
   .use(logger("dev")) // Tell express to use the Morgan logger
-  // Add support for CORS
-  .use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-    );
-    res.setHeader(
-      "Access-Control-Allow-Methods",
-      "GET, POST, PATCH, PUT, DELETE, OPTIONS"
-    );
-    next();
-  })
   // Tell express to use the specified director as the
   // root directory for your web site
   .use(express.static(path.join(__dirname, "../dist/lyj-wedding")));
