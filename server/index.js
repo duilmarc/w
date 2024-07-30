@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 dotenv.config();
 
@@ -26,21 +27,7 @@ app
   .use(logger("dev")) // Tell express to use the Morgan logger
   // Add support for CORS
 
-  .use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*")
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested, Content-Type, Accept Authorization"
-    )
-    if (req.method === "OPTIONS") {
-      res.header(
-        "Access-Control-Allow-Methods",
-        "GET, POST, PATCH, PUT, DELETE, OPTIONS"
-      )
-      return res.status(200).json({})
-    }
-    next()
-  })
+  use(cors())
   // Tell express to use the specified director as the
   // root directory for your web site
   .use(express.static(path.join(__dirname, "../dist/lyj-wedding")));
