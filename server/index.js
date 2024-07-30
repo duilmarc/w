@@ -1,4 +1,3 @@
-// Get dependencies
 const express = require("express");
 const path = require("path");
 const http = require("http");
@@ -15,8 +14,15 @@ const routes = require("./routes");
 
 const app = express(); // create an instance of express
 
+// Configure CORS to allow requests from specific origins
+const corsOptions = {
+  origin: 'https://lucero-franco-wedding-75ab3c80e12a.herokuapp.com',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
 // Tell express to use the following parsers for POST data
 app
+  .use(cors(corsOptions)) // Add support for CORS
   .use(bodyParser.json())
   .use(
     bodyParser.urlencoded({
@@ -25,16 +31,12 @@ app
   )
   .use(cookieParser())
   .use(logger("dev")) // Tell express to use the Morgan logger
-  // Add support for CORS
-
   // Tell express to use the specified director as the
   // root directory for your web site
   .use(express.static(path.join(__dirname, "../dist/lyj-wedding")));
 
 // Tell express to map the default route ('/') to the index route
 // app.use("/", index);
-app.use(cors())
-// ... ADD YOUR CODE TO MAP YOUR URL'S TO ROUTING FILES HERE ...
 app.use("/api", routes);
 
 // Tell express to map all other non-defined routes back to the index page
