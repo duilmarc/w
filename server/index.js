@@ -27,14 +27,13 @@ app
   .use(logger("dev")) // Tell express to use the Morgan logger
   // Add support for CORS
 
-  use(cors({ origin: "https://lucero-franco-wedding-75ab3c80e12a.herokuapp.com", credentials: true }))
   // Tell express to use the specified director as the
   // root directory for your web site
   .use(express.static(path.join(__dirname, "../dist/lyj-wedding")));
 
 // Tell express to map the default route ('/') to the index route
 // app.use("/", index);
-
+app.use(cors())
 // ... ADD YOUR CODE TO MAP YOUR URL'S TO ROUTING FILES HERE ...
 app.use("/api", routes);
 
