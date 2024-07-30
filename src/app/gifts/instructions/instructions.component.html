@@ -24,37 +24,53 @@
           tienda donde los hemos encontrado.
         </p>
         <p>
-          Estamos gustosos de recibir los regalos en la recepción o puedes enviarlos o llevarlos a nuestra casa:
-          <a *ngIf="isLoggedIn" href="https://goo.gl/maps/Fiz2kcwxSpHntky1A" target="_blank">C.H Dean Valdivia Sector 4
-            Mz.P Lt.4 Cayma</a>
+          Estamos gustosos de recibir los regalos en la recepción o puedes enviarlos o llevarlos a nuestras casas
+          <a *ngIf="isLoggedIn" href="https://maps.app.goo.gl/r8TcVtAPowQFxcL17" target="_blank">Av 12 de Octubre Pasaje Chachani 208 - Cerro Colorado</a> O en <a *ngIf="isLoggedIn" href="https://maps.app.goo.gl/NGtLkjCxqoRV5Bmd6" target="_blank">Calle Abraham Valdelomar 125 Ampliacion Paucarpata</a>
           <a routerLink="/login" *ngIf="!isLoggedIn">Inicia sesion para ver la direccion</a>
         </p>
         <p *ngIf="isLoggedIn">
-          Si tienes alguna duda o comentario, puedes escribirnos a <a href="mailto:joelvaldezangeles@gmail.com">
-            joelvaldezangeles@gmail.com
+          Si tienes alguna duda o comentario, puedes escribirnos a <a href="mailto:franco.chp@gmail.com">
+           franco.chp@gmail.com
           </a>
-          o llamar al <a href="tel:+51953945798">+51 953 945 798</a>
+          o llamar al <a href="tel:+51953945798">+51 944 178 530</a>
         </p>
         <h2>Informacion bancaria</h2>
         <p>
-          Mi número de cuenta BCP Soles es 21592956936089.
+          Mi número de cuenta Interbank Soles es 898 3306270496.
           <br>
-          Mi número de cuenta interbancaria es 00221519295693608923.
+          Mi número de cuenta interbancaria es 003-898-013306270496-49.
         </p>
-        <div class="qr-yape">
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>My Codigo Yape QR es:</mat-card-title>
-              <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-            </mat-card-header>
-            <img mat-card-image src="/assets/qr-yape-cut.jpg" alt="yape-qr">
-            <mat-card-content class="text-center">
-              <p>
-                Joel Valdez Angeles
-              </p>
-            </mat-card-content>
-          </mat-card>
+        <div class="col-12 row justify-content-md-center">
+          <div class="col-6 qr-yape">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>My Yape QR es:</mat-card-title>
+                <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+              </mat-card-header>
+              <img mat-card-image src="/assets/qr-yape.jpeg" alt="yape-qr">
+              <mat-card-content class="text-center">
+                <p>
+                  Lucero Llaiqui Lobon
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-6 qr-yape">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>My Plin QR es:</mat-card-title>
+                <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+              </mat-card-header>
+              <img mat-card-image src="/assets/qr-plin.jpeg" alt="yape-qr">
+              <mat-card-content class="text-center">
+                <p>
+                  Franco Chavez Ponce
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </div>
         </div>
+        
       </mat-card>
     </div>
   </div>
