@@ -16,7 +16,7 @@ const app = express(); // create an instance of express
 
 // Configure CORS to allow requests from specific origins
 const corsOptions = {
-  origin: 'https://lucero-franco-wedding-75ab3c80e12a.herokuapp.com/api',
+  origin: '*',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
