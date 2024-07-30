@@ -33,7 +33,7 @@ app
   .use(logger("dev")) // Tell express to use the Morgan logger
   // Tell express to use the specified director as the
   // root directory for your web site
-  .use(express.static(path.join(__dirname, "../dist/lyj-wedding")));
+  .use(express.static(path.join(__dirname, "../dist/lucero-franco-wedding")));
 
 // Tell express to map the default route ('/') to the index route
 // app.use("/", index);
@@ -41,7 +41,7 @@ app.use("/api", routes);
 
 // Tell express to map all other non-defined routes back to the index page
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../dist/lyj-wedding/index.html"));
+  res.sendFile(path.join(__dirname, "../dist/lucero-franco-wedding/index.html"));
 });
 
 // Handle preflight requests for all routes
@@ -60,5 +60,5 @@ server.listen(PORT, function () {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../dist/lyj-wedding/index.html"));
+  res.sendFile(path.join(__dirname, "../dist/lucero-franco-wedding/index.html"));
 });
