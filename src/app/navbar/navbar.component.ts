@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
-import { SocialAuthService, SocialUser } from "angularx-social-login";
+// import { SocialAuthService, SocialUser } from "angularx-social-login";
 import { UserService } from "../users/user.service";
 
 @Component({
@@ -11,12 +11,12 @@ import { UserService } from "../users/user.service";
 export class NavbarComponent implements OnInit {
   @ViewChild("navbarToggler", { read: ElementRef }) navbarToggler!: ElementRef;
   @ViewChild("navbarCollapse") navbarCollapse!: ElementRef;
-  socialUser?: SocialUser;
+  // socialUser?: SocialUser;
   isLoggedIn: boolean = false;
   isAdmin: boolean = false;
   constructor(
     private readonly router: Router,
-    private readonly socialAuthService: SocialAuthService,
+    // private readonly socialAuthService: SocialAuthService,
     private readonly userService: UserService
   ) {}
 
@@ -25,9 +25,9 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.socialAuthService.authState.subscribe((user) => {
-      this.socialUser = user;
-    });
+    // this.socialAuthService.authState.subscribe((user) => {
+    //   this.socialUser = user;
+    // });
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (this.navBarTogglerIsVisible()) {
@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
   async logout() {
     localStorage.removeItem("token");
     try {
-      await this.socialAuthService.signOut();
+      // await this.socialAuthService.signOut();
     } catch (e) {
       console.log(e);
     }

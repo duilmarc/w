@@ -15,12 +15,12 @@ import { HttpClientModule } from "@angular/common/http";
 import { AddGiftComponent } from "./gifts/add-gift/add-gift.component";
 import { GiftListComponent } from "./gifts/gift-list/gift-list.component";
 import { GiftItemComponent } from "./gifts/gift-item/gift-item.component";
-import {
-  FacebookLoginProvider,
-  GoogleLoginProvider,
-  SocialAuthServiceConfig,
-  SocialLoginModule,
-} from "angularx-social-login";
+// import {
+//   FacebookLoginProvider,
+//   GoogleLoginProvider,
+//   SocialAuthServiceConfig,
+//   SocialLoginModule,
+// } from "angularx-social-login";
 import { environment } from "src/environments/environment";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -55,7 +55,7 @@ import { InstructionsComponent } from './gifts/instructions/instructions.compone
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    SocialLoginModule,
+    // SocialLoginModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
     MatButtonModule,
@@ -70,22 +70,22 @@ import { InstructionsComponent } from './gifts/instructions/instructions.compone
     MatBadgeModule
   ],
   providers: [
-    {
-      provide: "SocialAuthServiceConfig",
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(environment.googleClientId),
-          },
-          {
-            id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider(environment.facebookClientId),
-          },
-        ],
-      } as SocialAuthServiceConfig,
-    },
+    // {
+    //   provide: "SocialAuthServiceConfig",
+    //   useValue: {
+    //     autoLogin: false,
+    //     providers: [
+    //       {
+    //         id: GoogleLoginProvider.PROVIDER_ID,
+    //         provider: new GoogleLoginProvider(environment.googleClientId),
+    //       },
+    //       {
+    //         id: FacebookLoginProvider.PROVIDER_ID,
+    //         provider: new FacebookLoginProvider(environment.facebookClientId),
+    //       },
+    //     ],
+    //   } as SocialAuthServiceConfig,
+    // },
   ],
   bootstrap: [AppComponent],
 })
