@@ -11,23 +11,5 @@
     display: flex;
     align-items: stretch; /* Asegura que los elementos en la columna se estiren para igualar la altura */
   }
+
   
-  .gift-item {
-    display: flex;
-    flex-direction: column;
-    width: 100%; /* Asegura que el ítem ocupe el ancho completo de la columna */
-    box-sizing: border-box; /* Incluye padding y border en el ancho total */
-    border: 1px solid #ddd; /* Agrega un borde ligero */
-    border-radius: 8px; /* Bordes redondeados */
-    overflow: hidden; /* Evita que el contenido se desborde */
-    background-color: #fff; /* Fondo blanco */
-  }
-  
-  .gift-item img {
-    width: 100%; /* Asegura que la imagen ocupe el ancho completo */
-    height: auto; /* Mantiene la proporción de la imagen */
-  }
-  
-  .gift-item-content {
-    padding: 16px; /* Espacio interno alrededor del contenido */
-  }

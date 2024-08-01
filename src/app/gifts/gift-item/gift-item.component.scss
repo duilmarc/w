@@ -1,19 +1,6 @@
-.icon-btn{
-  min-width: initial;
-}
-
-.link{
-  color: #499fba !important;
-  text-decoration: none;
-}
-
-.link:hover{
-  color: #0F4A64 !important;
-  text-decoration: none;
-}
-
 .example-card {
-  width: 350px; /* Ancho fijo para todas las tarjetas */
+  width: 100%; 
+  min-width: none;
   height: 380px; /* Alto fijo para todas las tarjetas */
   display: flex;
   flex-direction: column;
@@ -29,7 +16,6 @@
 }
 
 .gift-img {
-  width: 350px; /* Ocupa todo el ancho de la tarjeta */
   height: 250px; /* Altura fija para la imagen */
   object-fit: cover; /* Asegura que la imagen cubra el área sin deformarse */
   display: block; /* Asegura que la imagen sea un bloque para evitar márgenes inesperados */
@@ -44,7 +30,6 @@
   height: 100%;
   width: 100%;
 }
-
 
 .gift-name {
   text-align: center;
@@ -65,20 +50,35 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: initial; /* Asegura que el botón no tenga un ancho mínimo */
+}
+
+.btn-success {
+  width: 100%; /* Asegura que los botones ocupen todo el ancho disponible */
 }
 
 .btn-success {
   background-color: #28a745; /* Color de fondo del botón */
   color: white; /* Color del texto del botón */
 }
+
+
+.btn-warning {
+  background-color: #28a745; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+}
+
+
 .btn-success:hover {
   background-color: #218838; /* Color de fondo al hacer hover */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más intensa al hacer hover */
 }
+
 .btn-primary {
   background-color: #007bff; /* Color de fondo del botón */
   color: white; /* Color del texto del botón */
 }
+
 .btn-primary:hover {
   background-color: #0056b3; /* Color de fondo al hacer hover */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más intensa al hacer hover */
@@ -88,7 +88,18 @@
   background-color: #dc3545; /* Color de fondo del botón */
   color: white; /* Color del texto del botón */
 }
+
 .btn-danger:hover {
   background-color: #c82333; /* Color de fondo al hacer hover */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más intensa al hacer hover */
+}
+
+.link {
+  color: #499fba !important;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #0F4A64 !important;
+  text-decoration: none;
 }

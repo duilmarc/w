@@ -15,18 +15,16 @@
   </div>
 </div> -->
 <mat-card class="example-card" onclick="">
-
-  
   <a href="{{gift.url}}" class="link link-image" target="_blank">
     <img mat-card-image class="gift-img" src="{{gift.image}}" alt="{{gift.name}}">
   </a>
-  
   <mat-card-content class="card-content">
     <a href="{{gift.url}}" class="link gift-name" target="_blank">
       {{gift.name}}
     </a>
     <div class="card-buttons">
-      <button *ngIf="isLoggedIn" mat-raised-button class="btn btn-success" (click)="addToMyGifts()">Agregar a mis regalos</button>
+      <button *ngIf="isLoggedIn && !isAdmin" mat-raised-button class="btn btn-success" (click)="addToMyGifts()">Agregar a mis regalos</button>
+      <button *ngIf="isLoggedIn && isAdmin" mat-raised-button class="btn btn-warning" (click)="addToMyGifts()">Agregar a mis regalos</button>
       <button *ngIf="isAdmin" mat-raised-button class="icon-btn btn-primary" [routerLink]="!disableButtons?[gift.uuid,'edit']:null">
         <fa-icon [icon]="faPenToSquare"></fa-icon>
       </button>
