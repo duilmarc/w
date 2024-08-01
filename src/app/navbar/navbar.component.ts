@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 // import { SocialAuthService, SocialUser } from "angularx-social-login";
 import { UserService } from "../users/user.service";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-navbar",
@@ -9,6 +10,7 @@ import { UserService } from "../users/user.service";
   styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent implements OnInit {
+  menuIcon = faBars;
   @ViewChild("navbarToggler", { read: ElementRef }) navbarToggler!: ElementRef;
   @ViewChild("navbarCollapse") navbarCollapse!: ElementRef;
   // socialUser?: SocialUser;

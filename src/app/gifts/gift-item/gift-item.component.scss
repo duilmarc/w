@@ -1,14 +1,3 @@
-.gift-img{
-  height: 200px;
-  width: 100%;
-  object-fit: cover;
-  margin: 0;
-}
-.mh-200{
-  max-height: 200px;
-  overflow-y: auto;
-}
-
 .icon-btn{
   min-width: initial;
 }
@@ -23,15 +12,83 @@
   text-decoration: none;
 }
 
-.link-image{
-  margin-top: 16px;
-  display: block;
+.example-card {
+  width: 350px; /* Ancho fijo para todas las tarjetas */
+  height: 380px; /* Alto fijo para todas las tarjetas */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 16px; /* Espacio alrededor de cada tarjeta */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  border-radius: 8px; /* Esquinas redondeadas */
 }
 
-.mat-card-image{
-  margin: 0;
+.example-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más intensa al hacer hover */
+  transform: translateY(-4px); /* Eleva la tarjeta ligeramente al hacer hover */
 }
 
-.gift-title{
-  margin-top: 10px !important;
+.gift-img {
+  width: 350px; /* Ocupa todo el ancho de la tarjeta */
+  height: 250px; /* Altura fija para la imagen */
+  object-fit: cover; /* Asegura que la imagen cubra el área sin deformarse */
+  display: block; /* Asegura que la imagen sea un bloque para evitar márgenes inesperados */
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Espacio entre los elementos */
+  align-content: space-between;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+
+.gift-name {
+  text-align: center;
+  font-size: 1.2rem; /* Tamaño del texto */
+  font-weight: bold; /* Negrita para destacar el nombre */
+  text-decoration: none; /* Quitar subrayado del enlace */
+  color: inherit; /* Hereda el color del texto del contenedor */
+}
+
+.card-buttons {
+  display: flex;
+  gap: 8px; /* Espacio entre botones */
+  flex-wrap: wrap; /* Permite que los botones se envuelvan si no caben en una línea */
+  justify-content: space-between; /* Centra los botones horizontalmente */
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-success {
+  background-color: #28a745; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+}
+.btn-success:hover {
+  background-color: #218838; /* Color de fondo al hacer hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más intensa al hacer hover */
+}
+.btn-primary {
+  background-color: #007bff; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+}
+.btn-primary:hover {
+  background-color: #0056b3; /* Color de fondo al hacer hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más intensa al hacer hover */
+}
+
+.btn-danger {
+  background-color: #dc3545; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+}
+.btn-danger:hover {
+  background-color: #c82333; /* Color de fondo al hacer hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más intensa al hacer hover */
 }

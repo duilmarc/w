@@ -8,12 +8,11 @@
       <span class="navbar-toggler-icon"></span>
     </button> -->
 
-    <button mat-icon-button #navbarToggler class="text-white navbar-toggler" data-bs-toggle="collapse"
+    <button mat-icon-button #navbarToggler class="text-white navbar-toggler d-lg-none" data-bs-toggle="collapse"
       data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
       aria-label="Toggle navigation">
-      <mat-icon>Menu</mat-icon>
+      <mat-icon><fa-icon [icon]="menuIcon"></fa-icon></mat-icon>
     </button>
-
     <div class="collapse navbar-collapse" #navbarCollapse id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <!-- <li class="nav-item">
@@ -66,7 +65,8 @@
             data-bs-toggle="dropdown" aria-expanded="false">
             Usuario
           </a> -->
-          <button mat-button [matMenuTriggerFor]="menu" class="nav-link text-white clickable p-0 w-100 text-start">Usuario</button>
+          <button mat-button [matMenuTriggerFor]="menu"
+            class="nav-link text-white clickable p-0 w-100 text-start">Usuario</button>
           <mat-menu #menu="matMenu">
             <button [routerLink]="['/login']" mat-menu-item>Iniciar Sesion</button>
             <button [routerLink]="['/signup']" mat-menu-item>Registrarte</button>

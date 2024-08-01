@@ -14,37 +14,27 @@
     </div>
   </div>
 </div> -->
+<mat-card class="example-card" onclick="">
 
-<mat-card class="example-card">
-  <mat-card-header>
-    <!-- <div mat-card-avatar class="example-header-image"></div> -->
-    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-  </mat-card-header>
-  <!-- <mat-divider></mat-divider> -->
+  
   <a href="{{gift.url}}" class="link link-image" target="_blank">
     <img mat-card-image class="gift-img" src="{{gift.image}}" alt="{{gift.name}}">
   </a>
-  <mat-card-title class="gift-title">
-    <a href="{{gift.url}}" class="link" target="_blank">
+  
+  <mat-card-content class="card-content">
+    <a href="{{gift.url}}" class="link gift-name" target="_blank">
       {{gift.name}}
     </a>
-  </mat-card-title>
-  <mat-card-content>
-    <p class="card-text mh-200">
-      {{gift.description}}
-    </p>
+    <div class="card-buttons">
+      <button *ngIf="isLoggedIn" mat-raised-button class="btn btn-success" (click)="addToMyGifts()">Agregar a mis regalos</button>
+      <button *ngIf="isAdmin" mat-raised-button class="icon-btn btn-primary" [routerLink]="!disableButtons?[gift.uuid,'edit']:null">
+        <fa-icon [icon]="faPenToSquare"></fa-icon>
+      </button>
+      <button *ngIf="isAdmin" mat-raised-button class="icon-btn btn-danger" (click)="deleteGift()">
+        <fa-icon [icon]="faTrashAlt"></fa-icon>
+      </button>
+    </div>
   </mat-card-content>
-  <mat-card-actions *ngIf="!isMyGifts">
-    <button *ngIf="isLoggedIn" mat-raised-button class="btn btn-success" (click)="addToMyGifts()">Agregar a mis
-      regalos</button>
-    <button *ngIf="isAdmin" mat-raised-button class="icon-btn me-0 btn-primary"
-      [routerLink]="!disableButtons?[gift.uuid,'edit']:null">
-      <fa-icon [icon]="faPenToSquare"></fa-icon>
-    </button>
-    <button *ngIf="isAdmin" mat-raised-button class="icon-btn me-0 btn-danger" (click)="deleteGift()">
-      <fa-icon [icon]="faTrashAlt"></fa-icon>
-    </button>
-  </mat-card-actions>
 </mat-card>
 
 

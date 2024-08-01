@@ -11,11 +11,16 @@
           pagina son los que hemos encontrado esenciales para formar nuestro hogar.
         </p>
         <h2>Que debo hacer?</h2>
+        <p *ngIf="!isLoggedIn">Primero registrate en la aplicacion en este <a
+          routerLink="/signup">enlace de registro</a>, una vez registrado tu usuario, <a
+          routerLink="/signup">inicia sesion</a> para que puedas seleccionar los regalos disponibles.
+        </p>
         <p>
           Eres libre de escoger cuantos regalos te gustaria compartir con nosotros, solo haz click en el boton
           agregar a mis regalos, o puedes llevar un regalo
           de tu elección, tambien hemos habilitado la opcion de que nos puedas hacer un deposito o yape
-          puedes encontrar esa informacion al final de la pagina.
+          puedes encontrar esa informacion al final de la pagina. Encuentra la lista de regalos <a
+          routerLink="/gifts">"Aqui"</a>.
         </p>
         <h2>Que hacer luego de elegir un regalo?</h2>
         <p>
